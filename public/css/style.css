@@ -72,26 +72,9 @@ section {
     /* position: absolute; */
     box-sizing: border-box;
 }
-@media (max-width:480px) {
-    section {
-        width:90%;
-        height: 35em;
-    }
-}
-@media (min-width:481px) and (max-width:768px) {
-    section {
-        width:60%;
-        height:34em;
-    }
-}
-@media (min-width:769px) and (max-width:1150px) {
-    section {
-        width:50%;
-      
-        height: 34em;
-    
-    } 
-}
+
+
+
 input {
     background: #729fcf69;
     border: none;
@@ -131,4 +114,25 @@ button:hover {
 }
 input:focus {
     border: 2px solid rgb(32, 74, 135)
+}
+
+@media (max-width:1150px) and (min-width:769px)  {
+    section {
+        width:50%;
+      
+        height: 34em;
+    
+    } 
+}
+@media (max-width:768px) and (min-width:481px) {
+    section {
+        width:60%;
+        height:34em;
+    }
+}
+@media (max-width:480px) {
+    section {
+        width:90%;
+        height: 35em;
+    }
 }
