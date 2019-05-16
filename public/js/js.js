@@ -8,7 +8,7 @@ formvalue.addEventListener('submit',(e) => {
     const valuee = inpt.value
 
     msg1.textContent = 'loading ...'
-    fetch(`http://localhost:3000/weather?address=${valuee}`).then((response)=> {
+    fetch(`/weather?address=${valuee}`).then((response)=> {
         response.json().then((data) => {
             if (data.error) {
                 msg1.textContent = data.error
@@ -22,15 +22,15 @@ formvalue.addEventListener('submit',(e) => {
 
 
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    console.log( "Geolocation is not supported by this browser.")
-  }
-}
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//   } else {
+//     console.log( "Geolocation is not supported by this browser.")
+//   }
+// }
 
-function showPosition(position) {
-console.log(position.coords.latitude + position.coords.longitude)
-}
-getLocation()
+// function showPosition(position) {
+// console.log(position.coords.latitude + position.coords.longitude)
+// }
+// getLocation()

@@ -14,6 +14,8 @@ const partialsPath = path.join(__dirname,'../templates/partials')
 
 const app = express()
 
+const port = process.env.PORT || 3000
+
 app.use(function(req, res, next) {
     var ipInfo = getIP(req);
     console.log(ipInfo);
@@ -94,6 +96,6 @@ app.get('/*',(req,res) => {
     })
 })
 
-app.listen(3000 ,() => {
+app.listen(port ,() => {
     console.log('server is up and running')
 }) 
