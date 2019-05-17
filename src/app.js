@@ -38,8 +38,8 @@ app.get('',(req,res) => {
 })
 
 app.get('/about',(req,res) => {
-    const ipInfo = req.ipInfo;
-    console.log(ipInfo)
+    // const ipInfo = req.ipInfo;
+    // console.log(ipInfo)
     
     
     res.render('about',{
