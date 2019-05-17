@@ -54,27 +54,12 @@ app.get('/helps',(req,res) => {
 })
 
 app.get('/weather',(req,res) => {
-    const ipInfo = req.ipInfo;
-
+//     const ipInfo = req.ipInfo;
+// console.log(ipInfo)
 
 
     if(!req.query.address) {
-        geocode(ipInfo.city,(error,{latitude,langitude,location} ={}) => {
-            if (error) {
-                return res.send({error})
-            }
-            forecast(latitude,langitude,(error,dataf) => {
-                 if (error) {
-                     return res.send({error})
-                 }
-                     res.send({
-                          location,
-                          weather:dataf,
-                          address:req.query.address
-                     })
-                 
-            })
-        })
+        return res.send({error:'you must enter location'})
     }
     
         geocode(req.query.address,(error,{latitude,langitude,location} ={}) => {
