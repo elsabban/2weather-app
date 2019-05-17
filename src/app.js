@@ -3,8 +3,11 @@ const express = require('express')
 const hbs = require('hbs')
 const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
-
+const expressip = require('express-ip');
 var getIP = require('ipware')().get_ip;
+
+
+
 
 
 
@@ -15,13 +18,8 @@ const partialsPath = path.join(__dirname,'../templates/partials')
 const app = express()
 
 const port = process.env.PORT || 3000
+app.use(expressip().getIpInfoMiddleware);
 
-app.use(function(req, res, next) {
-    var ipInfo = getIP(req);
-    console.log(ipInfo);
-    // { clientIp: '127.0.0.1', clientIpRoutable: false }
-    next();
-});
 
 
 app.use(express.static(publicPath))
@@ -56,11 +54,29 @@ app.get('/helps',(req,res) => {
 })
 
 app.get('/weather',(req,res) => {
-  
+    const ipInfo = req.ipInfo;
+
+
 
     if(!req.query.address) {
-        return res.send({error:'you must enter location'})
+        geocode(ipInfo.city,(error,{latitude,langitude,location} ={}) => {
+            if (error) {
+                return res.send({error})
+            }
+            forecast(latitude,langitude,(error,dataf) => {
+                 if (error) {
+                     return res.send({error})
+                 }
+                     res.send({
+                          location,
+                          weather:dataf,
+                          address:req.query.address
+                     })
+                 
+            })
+        })
     }
+    
         geocode(req.query.address,(error,{latitude,langitude,location} ={}) => {
             if (error) {
                 return res.send({error})
