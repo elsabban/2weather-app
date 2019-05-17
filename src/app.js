@@ -38,10 +38,14 @@ app.get('',(req,res) => {
 })
 
 app.get('/about',(req,res) => {
+    const ipInfo = req.ipInfo;
+    console.log(ipInfo)
+    
+    
     res.render('about',{
         title:'about page dynamic',
         name:'elsabbo',
-        titleee:'about page'
+        head:ipInfo.city
     })
 })
 
@@ -54,9 +58,6 @@ app.get('/helps',(req,res) => {
 })
 
 app.get('/weather',(req,res) => {
-//     const ipInfo = req.ipInfo;
-// console.log(ipInfo)
-
 
     if(!req.query.address) {
         return res.send({error:'you must enter location'})
