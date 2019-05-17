@@ -45,7 +45,7 @@ app.get('/about',(req,res) => {
     res.render('about',{
         title:'about page dynamic',
         name:'elsabbo',
-        head:ipInfo.city
+        head:"about"
     })
 })
 
